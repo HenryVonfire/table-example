@@ -1,16 +1,13 @@
 {{#light-table table as |t|}}
-{{!t.head fixed=true}}
-{{#t.head fixed=true as |groups subColumns table|}}
-          {{!TODO: the drag-resize is disable until I find a better way to use it}}
-          {{!#custom-light-table.drag-resize tableId=elementId as |resize|}}
-            {{#each groups as |column|}}
 
-              {{drag-header column=column rowspan=1 classNames="lt-column" table=table tableActions=tableActions sortIcons=sortIcons}}
-              <!--<div onmousedown={{action resize.selectColumn column}} style="cursor:ew-resize;height:50px;background-color:green;">&nbsp;</div>-->
-
-            {{/each}}
-          {{!/custom-light-table.drag-resize}}
-        {{/t.head}}
+  {{#t.head fixed=true as |groups subColumns table|}}¡
+    {{!#drag-resize table=table tableId=elementId as |resize|}}
+      {{#each groups as |column|}}
+        {{drag-header table=table column=column rowspan=1 classNames="lt-column" tableActions=tableActions sortIcons=sortIcons}}
+        <!--<div onmousedown={{action resize.selectColumn column}} style="cursor:ew-resize;float:left;background-color:green;overflow-y:hidden;height:100%;">&nbsp;</div>-->
+      {{/each}}
+    {{!/drag-resize}}
+  {{/t.head}}
 
   {{t.body height='64vh'}}
 {{/light-table}}
